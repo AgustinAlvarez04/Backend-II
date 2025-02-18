@@ -1,8 +1,7 @@
 {
-  "name": "primerapreentrega",
+  "name": "Proyecto BackendI",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +11,9 @@
     "lint": "eslint ./src --fix"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Agustin Alvarez",
+  "description": "PreEntrega 1",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
