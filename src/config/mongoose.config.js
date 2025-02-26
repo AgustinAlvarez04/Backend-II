@@ -1,8 +1,8 @@
 import { connect, Types } from "mongoose";
+import "dotenv/config";
 
-// Conecta con la base de datos MongoDB
 export const connectDB = async () => {
-    const URL = "mongodb+srv://agustin:12345@cluster0.u1dec.mongodb.net/datos";
+    const URL = process.env.MONGO_URL;
 
     try {
         await connect(URL);
@@ -12,7 +12,6 @@ export const connectDB = async () => {
     }
 };
 
-// Verifica que un ID sea válido con el formato de ObjectId de MongoDB
 export const isValidID = (id) => {
     return Types.ObjectId.isValid(id);
 };
