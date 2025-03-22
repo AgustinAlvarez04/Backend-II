@@ -18,11 +18,11 @@ Este repositorio contiene proyectos y ejercicios del curso Backend II: Diseño y
 ✔ Patrón MVC para estructurar proyectos
 
 📌 Cómo ejecutar el proyecto:
-1️⃣ Clonar el repositorio:
+- Clonar el repositorio:
   git clone https://github.com/AgustinAlvarez04/Backend-II.git
-  cd Backend-II
-2️⃣ Instalar dependencias:
+   cd Backend-II
+- Instalar dependencias:
   npm i
-3️⃣ Configurar variables de entorno (.env).
-4️⃣ Ejecutar el servidor:
+- Configurar variables de entorno (.env).
+- Ejecutar el servidor:
   npm run dev
