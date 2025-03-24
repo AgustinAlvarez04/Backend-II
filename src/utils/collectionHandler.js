@@ -1,13 +1,13 @@
 export const generateId = (collection) => {
-    console.log(collection);
-    if (!Array.isArray(collection)) {
-        throw new Error("Colección no válida");
+  console.log(collection);
+  if (!Array.isArray(collection)) {
+    throw new Error("Invalid collection");
+  }
+  let maxId = 0;
+  collection.forEach((item) => {
+    if (item.id > maxId) {
+      maxId = item.id;
     }
-    let maxId = 0;
-    collection.forEach((item) => {
-        if (item.id > maxId) {
-            maxId = item.id;
-        }
-    });
-    return maxId + 1;
+  });
+  return maxId + 1;
 };

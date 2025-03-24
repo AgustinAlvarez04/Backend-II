@@ -1,5 +1,7 @@
 import { Server } from "socket.io";
-import ProductManager from "../managers/ProductManager.js";
+
+import ProductManager from "../daos/mongo/classes/product.dao.js";
+
 import FileHandler from "../utils/fileHandler.js";
 import paths from "../utils/paths.js";
 import { generateNameForFile } from "../utils/random.js";

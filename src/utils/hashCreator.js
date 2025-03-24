@@ -7,6 +7,6 @@ export const isValidPassword = async (password, hash) => {
   try {
     return await bcrypt.compare(password, hash);
   } catch (error) {
-    console.log("Error: " + error.message);
+    console.log("Error: ", error.message);
   }
 };
