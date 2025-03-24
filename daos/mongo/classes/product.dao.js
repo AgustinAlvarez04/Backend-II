@@ -17,7 +17,7 @@ export default class ProductDAO {
   }
 
   // Obtiene todos los productos con opciones de paginación //
-  getAll = async (paramFilters) => {
+  getAllProducts = async (paramFilters) => {
     try {
       const $and = [];
       if (paramFilters?.title)
@@ -49,11 +49,8 @@ export default class ProductDAO {
     }
   };
 
-  getOneById = async (id) => {
+  getProductById = async (id) => {
     try {
-      if (!mongoDB.isValidID(id)) {
-        throw new ErrorManager("Invalid ID", 400);
-      }
       const productFound = await this.#productModel.findById(id).lean();
       if (!productFound) {
         throw new ErrorManager("ID not found", 404);
@@ -64,7 +61,7 @@ export default class ProductDAO {
     }
   };
 
-  insertOne = async (data, filename) => {
+  createProduct = async (data, filename) => {
     try {
       const productCreated = new ProductModel(data);
       productCreated.availability = convertToBoolean(data.availability);
@@ -80,7 +77,7 @@ export default class ProductDAO {
     }
   };
 
-  updateOneById = async (id, data, filename) => {
+  updateProduct = async (id, data, filename) => {
     try {
       if (!mongoDB.isValidID(id)) {
         throw new ErrorManager("Invalid ID", 400);
@@ -112,7 +109,7 @@ export default class ProductDAO {
     }
   };
 
-  deleteOneById = async (id) => {
+  deleteProduct = async (id) => {
     try {
       if (!mongoDB.isValidID(id)) {
         throw new ErrorManager("Invalid ID", 400);

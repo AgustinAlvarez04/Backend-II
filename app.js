@@ -14,10 +14,10 @@ import path from "./utils/paths.js";
 
 import cartRoutes from "./routes/api/cart.router.js";
 import productsRoutes from "./routes/api/products.router.js";
-import userRoutes from "./routes/api/view.router.js";
+import userRoutes from "./routes/api/user.router.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = 8080;
 
 configHandlebars(app);
 connectDB();
@@ -49,7 +49,7 @@ app.get("/", (req, res) => {res.render("home", { title: "HOME" }) });
 
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productsRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 
 const httpServer = app.listen(PORT, () => {

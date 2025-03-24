@@ -1,4 +1,4 @@
-import { createToken } from "../utils/cre ateToken.js";
+import { createToken } from "../utils/createToken.js";
 
 export const userRegister = async (req, res) => {
   return res.send("Registered successfully");
