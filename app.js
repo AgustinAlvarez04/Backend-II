@@ -17,7 +17,7 @@ import productsRoutes from "./routes/api/products.router.js";
 import userRoutes from "./routes/api/view.router.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = 5000;
 
 configHandlebars(app);
 connectDB();
@@ -53,7 +53,7 @@ app.use("/api/user", userRoutes);
 
 
 const httpServer = app.listen(PORT, () => {
-  console.log(`Server on port http://localhost:${app.get("PORT")}`);
+    console.log(`Ejecutándose en http://localhost:${PORT}`);
 });
 
 configWebsocket(httpServer);
