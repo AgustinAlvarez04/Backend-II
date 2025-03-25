@@ -1,14 +1,43 @@
 import { Router } from "express";
-import passport from "passport";
+import { isAuth } from "../../middlewares/isAuth.js";
+import { handlePolice } from "../../middlewares/handle-policies.js";
+import { extractTokenFromCookies, extractTokenFromHeaders } from "../../utils/jwt.js";
+import { loginUser, getUsers, getUserById, createUser, logout, getCurrentUser, recoverPass} from "../../controllers/user.controllers.js";
 
-import { userLogin, userRegister, userToken } from "../../controllers/user.controllers.js";
+const router = Router();
 
-const userRoutes = Router();
+router.get("/", getUsers);
 
-userRoutes.post("/register", passport.authenticate("register", { session: false }), userRegister );
+router.post("/register", createUser);
 
-userRoutes.post("/login", passport.authenticate("login", {session: false,}), userLogin );
+router.post("/login" , loginUser);
 
-userRoutes.get("/current", passport.authenticate("current", { session: false }), userToken );
+router.get("/logout", logout); 
 
-export default userRoutes;
+router.get("/private", isAuth, (req,res) => res.send("ruta privada"));
+
+router.get("/:uid", handlePolice(["admin", "user"]), getUserById);
+
+router.post("/current", getCurrentUser);
+
+router.get("/recover", recoverPass)
+
+router.get("/private-headers", extractTokenFromHeaders, (req,res, next) => {
+    try{
+        if(!req.user) throw new Error("No autorizado");
+        return res.json(req.user);
+    } catch (error){
+        next(error);
+    }
+});
+
+router.get("/private-cookies", extractTokenFromCookies, (req,res, next) => {
+    try{
+        if(!req.user) throw new Error("No autorizado");
+        return res.json(req.user);
+    } catch (error){
+        next(error);
+    }
+});
+
+export default router;

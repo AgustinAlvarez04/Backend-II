@@ -5,16 +5,16 @@ import { createProduct, deleteProduct, updateProduct, getAllProducts, getProduct
 
 import { authorizeAdmin } from "../../config/authMiddlware.js";
 
-const productsRoutes = Router();
+const router = Router();
 
-productsRoutes.get("/", getAllProducts);
+router.get("/", getAllProducts);
 
-productsRoutes.get("/:id", getProductById);
+router.get("/:id", getProductById);
 
-productsRoutes.post("/", passport.authenticate("current", { session: false }), authorizeAdmin, createProduct );
+router.post("/", passport.authenticate("current", { session: false }), authorizeAdmin, createProduct );
 
-productsRoutes.put("/:id", passport.authenticate("current", { session: false }), authorizeAdmin, updateProduct );
+router.put("/:id", passport.authenticate("current", { session: false }), authorizeAdmin, updateProduct );
 
-productsRoutes.delete("/:id", passport.authenticate("current", { session: false }), authorizeAdmin, deleteProduct );
+router.delete("/:id", passport.authenticate("current", { session: false }), authorizeAdmin, deleteProduct );
 
-export default productsRoutes;
+export default router;

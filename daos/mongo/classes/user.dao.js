@@ -1,13 +1,14 @@
 import UserModel from '../models/user.model.js';
 
 export default class UserDAO {
+  
 
   async getUsers() {
     try {
       const users = await UserModel.find();
       return users;
     } catch (error) {
-      console.error('Error obtaining users', error);
+      console.error('Error al obtener los usuarios:', error);
       throw error;
     }
   }
@@ -17,7 +18,7 @@ export default class UserDAO {
       const user = await UserModel.findById(id);
       return user;
     } catch (error) {
-      console.error('Error obtaining user by ID', error);
+      console.error('Error al obtener el usuario por ID', error);
       throw error;
     }
   }
@@ -27,7 +28,7 @@ export default class UserDAO {
       const newUser = await UserModel.create(userData);
       return newUser;
     } catch (error) {
-      console.error('Error creating user', error);
+      console.error('Error al crear el usuario:', error);
       throw error;
     }
   }
@@ -46,7 +47,7 @@ export default class UserDAO {
       const updatedUser = await UserModel.findByIdAndUpdate(id, userData, { new: true });
       return updatedUser;
     } catch (error) {
-      console.error('Error updating user', error);
+      console.error('Error al actualizar el usuario:', error);
       throw error;
     }
   }
@@ -56,7 +57,7 @@ export default class UserDAO {
       const deletedUser = await UserModel.findByIdAndDelete(id);
       return deletedUser;
     } catch (error) {
-      console.error('Error removing user', error);
+      console.error('Error al eliminar el usuario:', error);
       throw error;
     }
   }

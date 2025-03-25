@@ -15,9 +15,10 @@ import path from "./utils/paths.js";
 import cartRoutes from "./routes/api/cart.router.js";
 import productsRoutes from "./routes/api/products.router.js";
 import userRoutes from "./routes/api/user.router.js";
+import viewRoutes from "./routes/api/view.router.js"
 
 const app = express();
-const PORT = 8080;
+const PORT = 7100;
 
 configHandlebars(app);
 connectDB();
@@ -50,6 +51,7 @@ app.get("/", (req, res) => {res.render("home", { title: "HOME" }) });
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/views", viewRoutes);
 
 
 const httpServer = app.listen(PORT, () => {

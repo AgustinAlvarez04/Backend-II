@@ -10,7 +10,7 @@ const cartService = new CartRepository(new Cart());
 const userService = new UserRepository(new User());
 
 export const passportRegister = async (req, username, password, done) => {
-  const { name, last_name, email, role } = req.body;
+  const { first_name, last_name, email, role } = req.body;
   try {
     const newCart = await cartService.createCart();
     const user = await userService.getUser({ email: username });
@@ -20,7 +20,7 @@ export const passportRegister = async (req, username, password, done) => {
     }
 
     const newUser = {
-      name,
+      first_name,
       last_name,
       email,
       role,
@@ -36,9 +36,9 @@ export const passportRegister = async (req, username, password, done) => {
   }
 };
 
-export const passportLogin = async (req, username, password, done) => {
+export const passportLogin = async (req, email, password, done) => {
   try {
-    const userExist = await userService.getUser({ email: username });
+    const userExist = await userService.getUsers({ email: email });
     if (!userExist) return done(null, false);
 
     const isValid = await isValidPassword(password, userExist.password);
